@@ -1,0 +1,27 @@
+# Maven build output
+target/
+
+# Eclipse / IntelliJ IDEA project files
+*.iml
+.idea/
+*.ipr
+*.iws
+
+# NetBeans
+nbproject/private/
+build/
+dist/
+
+# VS Code
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.swp
+*~
