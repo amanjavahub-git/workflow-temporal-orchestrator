@@ -1,0 +1,9 @@
+temporal:
+  target: dev.temporal.mycompany.com:7233   # Dev cluster ingress
+  namespace: dev                            # Dev namespace
+  useTls: true                              # Dev mein TLS enabled
+  clientCert: /etc/dev-certs/client.p12     # Dev ke certs path
+  caCert: /etc/dev-certs/ca.jks             # Dev ke CA truststore
+  certPassword: ${TEMPORAL_CERT_PASSWORD}   # ENV variable injection
+  worker:
+    taskQueue: DEV_TASK_QUEUE               # Dev specific task queue

@@ -1,0 +1,9 @@
+temporal:
+  target: temporal.mycompany.com:7233        # AKS ingress for Temporal
+  namespace: production                      # Prod namespace
+  useTls: true                               # TLS mandatory
+  clientCert: ${CLIENT_CERT_PATH}            # Mounted path from secret
+  caCert: ${CA_CERT_PATH}                    # Mounted path from secret
+  certPassword: ${CERT_PASSWORD}             # ENV variable injected from secret
+  worker:
+    taskQueue: PROD_TASK_QUEUE               # Prod workflows ke liye task queue

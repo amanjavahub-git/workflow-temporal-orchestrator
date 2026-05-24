@@ -1,0 +1,9 @@
+temporal:
+  target: staging.temporal.mycompany.com:7233   # Staging cluster ingress
+  namespace: staging                            # Staging namespace
+  useTls: true                                  # Staging mein TLS enabled
+  clientCert: /etc/staging-certs/client.p12     # Staging certs path
+  caCert: /etc/staging-certs/ca.jks             # Staging CA truststore
+  certPassword: ${TEMPORAL_CERT_PASSWORD}       # ENV variable injection
+  worker:
+    taskQueue: STAGING_TASK_QUEUE               # Staging specific task queue

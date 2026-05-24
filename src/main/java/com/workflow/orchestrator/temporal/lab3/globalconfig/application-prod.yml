@@ -1,0 +1,9 @@
+temporal:
+  target: temporal.mycompany.com:7233           # Production ingress
+  namespace: production                         # Production namespace
+  useTls: true                                  # Prod mein TLS mandatory
+  clientCert: /etc/prod-certs/client.p12        # Prod certs path
+  caCert: /etc/prod-certs/ca.jks                # Prod CA truststore
+  certPassword: ${TEMPORAL_CERT_PASSWORD}       # ENV variable injection
+  worker:
+    taskQueue: PROD_TASK_QUEUE                  # Prod workflows ke liye task queue

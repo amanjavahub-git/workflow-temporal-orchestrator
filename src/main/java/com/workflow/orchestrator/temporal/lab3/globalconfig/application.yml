@@ -1,0 +1,37 @@
+temporal:
+  target: 127.0.0.1:7233          # Local Temporal server address (default dev laptop)
+  # Cloud में ये ingress URL होगा जैसे temporal.mycompany.com:7233
+
+  namespace: default              # Temporal namespace (logical separation of workflows)
+  # Local dev में "default", prod में "production" namespace रखना चाहिए
+
+  useTls: false                   # Local dev में TLS नहीं चाहिए, Cloud में true होगा
+  # TLS secure connection enforce करता है
+
+  clientCert: certs/client.p12    # PKCS12 keystore file path (Cloud में mounted volume path)
+  # इसमें client certificate + private key store होता है
+
+  caCert: certs/ca.jks            # JKS truststore file path (Cloud में mounted volume path)
+  # इसमें CA certificate होता है जो server को trust करने के लिए ज़रूरी है
+
+  certPassword: changeit          # Keystore/truststore password
+  # Local dev में dummy, Cloud में ENV variable से inject करना चाहिए
+
+  activity:
+    startToCloseTimeout: 10s      # हर activity का max execution time (10 seconds)
+    # Fail होने पर retry होगा
+
+    retry:
+      maximumAttempts: 3          # Retry max 3 बार
+      initialInterval: 2s         # Retry delay 2 seconds
+      backoffCoefficient: 2.0     # Exponential backoff factor (2x)
+      maximumInterval: 30s        # Retry का max delay 30 seconds तक
+
+  worker:
+    taskQueue: PHARMACY_TASK_QUEUE # Worker जिस task queue पर listen करेगा
+    # हर workflow का अलग task queue होना चाहिए
+
+spring:
+  profiles:
+    active: local                 # Active profile (local/dev/staging/prod/cloud)
+    # Local dev में "local", Cloud deploy में "cloud"
