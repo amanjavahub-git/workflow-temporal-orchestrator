@@ -1,11 +1,12 @@
-package com.workflow.orchestrator.temporal.lab1;
+package com.workflow.orchestrator.temporal.lab2;
 
+import com.workflow.orchestrator.temporal.lab1.GreetingImpl;
 import io.temporal.client.WorkflowClient;
 import io.temporal.serviceclient.WorkflowServiceStubs;
 import io.temporal.worker.Worker;
 import io.temporal.worker.WorkerFactory;
 
-public class GreetingWorker {
+public class HelloWorkFlowWorker {
     public static void main(String[] args) {
         /**
          1)  WorkflowServiceStubs service = WorkflowServiceStubs.newLocalServiceStubs();
@@ -69,7 +70,7 @@ public class GreetingWorker {
     Worker worker = factory.newWorker("greeting-tasks");
 
     // Specify which Workflow implementations this Worker will support
-    worker.registerWorkflowImplementationTypes(GreetingImpl.class);
+    worker.registerWorkflowImplementationTypes(HelloWorkFlowImpl.class);
 
     // Begin running the Worker
     factory.start();
